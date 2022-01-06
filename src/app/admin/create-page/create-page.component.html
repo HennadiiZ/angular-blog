@@ -1,0 +1,50 @@
+<p>create-page works!</p>
+
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <h1>Creating a new post</h1>
+
+    <div 
+    class="form-control"
+    [ngClass]="{invalid: form.get('title')!.touched && form.get('title')!.invalid}"
+    >
+        <label for="title">Posts name:</label>
+        <input type="text" id="title" formControlName="title">
+        <div 
+        *ngIf="form.get('title')!.touched && form.get('title')!.invalid"
+        class="validation"
+        >
+            <small
+            *ngIf="form.get('title')!.errors!['required']"
+            >Please name your post</small>
+
+        </div>
+    </div>
+
+
+    <div class="form-control">
+        <!-- <label for="">Content: </label>
+        <quill-editor formControlName="text"></quill-editor> -->
+    </div>
+
+    <div 
+    class="form-control"
+    [ngClass]="{invalid: form.get('author')!.touched && form.get('author')!.invalid}"
+    >
+        <label for="author">the Author:</label>
+        <input type="text" id="author" formControlName="author">
+        <div 
+        *ngIf="form.get('author')!.touched && form.get('author')!.invalid"
+        class="validation"
+        >
+            <small
+            *ngIf="form.get('author')!.errors!['required']"
+            >Please write an author's name</small>
+
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-block btn-dark"
+    [disabled]="form.invalid"
+    >Create a post</button>
+</form>
