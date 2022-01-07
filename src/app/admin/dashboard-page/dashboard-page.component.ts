@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/shared/interfaces';
 import { PostService } from 'src/app/shared/post.service';
+import { AlertService } from '../shared/services/alert.service';
 import { AuthService } from '../shared/services/auth.service';
 
 @Component({
@@ -12,9 +13,16 @@ import { AuthService } from '../shared/services/auth.service';
 export class DashboardPageComponent implements OnInit, OnDestroy {
 
   posts: Post[] = [];
-  pSub!: Subscription
+  pSub!: Subscription;
+  dSub!: Subscription;
+  searchStr: string = '';
+
+
   // constructor(private auth: AuthService) { }
-  constructor(private postsService: PostService) { }
+  constructor(
+    private postsService: PostService,
+    private alert: AlertService
+  ) { }
 
   ngOnInit() {
     this.pSub = this.postsService.getAll().subscribe(posts=>{
@@ -28,13 +36,21 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   // }
 
   remove(id: any){
-
+      this.dSub =  this.postsService.remove(id).subscribe(()=>{
+          this.posts = this.posts.filter(post=> post.id !== id)
+          // this.alert.danger('post deleted')
+          this.alert.warning('post deleted')
+      })
   }
 
   ngOnDestroy(){
     if(this.pSub){
         this.pSub.unsubscribe()
     }
+
+    if(this.dSub){
+      this.dSub.unsubscribe()
+  }
   }
 
 
