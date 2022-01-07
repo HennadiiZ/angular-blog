@@ -6,8 +6,11 @@ import { Environment } from "./interface";
 
 export const environment: Environment = {
   production: false,
-  apiKey: 'AIzaSyAsjh27kLL_ErAOVS3pDy_3dhP-qiuIgLM'
+  apiKey: 'AIzaSyAsjh27kLL_ErAOVS3pDy_3dhP-qiuIgLM',
+  fbDbUrl: 'https://angular-blog-441ab-default-rtdb.europe-west1.firebasedatabase.app/'
 };
+
+//https://angular-blog-441ab-default-rtdb.europe-west1.firebasedatabase.app/
 
 /*
  * For easier debugging in development mode, you can import the following file

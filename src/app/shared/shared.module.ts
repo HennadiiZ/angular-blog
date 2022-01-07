@@ -1,6 +1,9 @@
 import {NgModule} from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'
-import { QuillModule } from 'ngx-quill';
+// import { QuillModule } from 'ngx-quill';
+// import   Delta  from 'quill';
+// import diff from 'fast-diff';
+
 
 @NgModule({
    imports: [
@@ -16,3 +19,4 @@ import { QuillModule } from 'ngx-quill';
 export class  SharedModule{
 
 }
+
